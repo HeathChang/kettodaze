@@ -47,10 +47,10 @@ const Layout = ({ children }: iLayout) => {
                 </SearchInputWrapper>
 
                 <HeaderButtonWrapper>
-                    <HeaderButton><h3>홈</h3></HeaderButton>
-                    <HeaderButton><h3>가챠</h3></HeaderButton>
-                    <HeaderButton><h3>내 주변</h3></HeaderButton>
-                    <HeaderButton><h3>마이페이지</h3></HeaderButton>
+                    <HeaderButton>홈</HeaderButton>
+                    <HeaderButton>가챠</HeaderButton>
+                    <HeaderButton>내 주변</HeaderButton>
+                    <HeaderButton>마이페이지</HeaderButton>
                 </HeaderButtonWrapper>
             </HeaderContainer>
 
@@ -59,7 +59,8 @@ const Layout = ({ children }: iLayout) => {
                   onClick={() => setNavVisible(prev => !prev)} visible={isMobile}/>
 
             <CustomNavbar activeItem={activeItem} onMouseEnter={(item) => setActiveItem(item)}
-                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {}}
+                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {
+            }}
                           visible={isNavVisible}
 
             />

@@ -170,13 +170,16 @@ export const HeaderButtonWrapper = styled.ul`
 
 export const HeaderButton = styled.li`
     list-style-type: none;
-    color: white;
+    
     display: flex;
     align-items: center;
     justify-content: right;
     margin-right: 40px;
     gap: 40px;
     cursor: pointer;
+    color: ${(props) => props.theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
     
     /* Media query for mobile devices */
     @media (max-width: 768px) {
