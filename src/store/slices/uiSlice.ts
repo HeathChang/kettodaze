@@ -8,7 +8,7 @@ interface iUISlice {
 
 const initState: iUISlice = {
     isHeaderVisible: false,
-    header: "Wordle",
+    header: "K-ettodaze",
     isLoading: false
 };
 

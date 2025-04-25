@@ -1,5 +1,6 @@
 // ENUM
 export enum eNavList {
+    DEFAULT = '',
     Popular = '인기 갓챠',
     Latest = '최신 갓챠',
     ByProduct = '제품별',

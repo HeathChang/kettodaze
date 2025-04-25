@@ -21,7 +21,7 @@ const fontWeights = {
 };
 
 const colors = {
-    primary: "#693bf2",
+    primary: "#D7231F",
     primaryLight: "#F9F5FF",
     white: "#FFFFFF",
     black: "#000000",
