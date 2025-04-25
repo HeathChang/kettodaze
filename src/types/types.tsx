@@ -10,3 +10,18 @@ export enum eNavList {
     ComingSoon = '입고예정 갓챠',
     AlmostIn = '입고 임박 갓챠',
 }
+
+
+
+// TYPE
+export interface iDefaultInterface {
+    onChange?: (params?: any) => void;
+    onClear?: (params?: any) => void;
+    onBlur?: (params?: any) => void;
+    onBack?: (params?: any) => void;
+    onClick?: (params?: any) => void;
+    onClose?: (params?: any) => void;
+    onPress?: (params?: any) => void;
+    visible: boolean;
+
+}

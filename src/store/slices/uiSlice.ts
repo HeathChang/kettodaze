@@ -4,9 +4,11 @@ interface iUISlice {
     isHeaderVisible: boolean;
     header: string;
     isLoading: boolean;
+    isMobile: boolean;
 }
 
 const initState: iUISlice = {
+    isMobile: false,
     isHeaderVisible: false,
     header: "K-ettodaze",
     isLoading: false
@@ -26,12 +28,15 @@ const uiSlice = createSlice({
         clearUiSlice: (state) => {
             state.isHeaderVisible = false;
             state.header = "Wordle";
+        },
+        setMobile: (state, action: PayloadAction<boolean>) => {
+            state.isMobile = action.payload;
         }
     }
 
 });
 
 // export actions
-export const { setHeader, setIsLoading, clearUiSlice } = uiSlice.actions;
+export const { setMobile, setHeader, setIsLoading, clearUiSlice } = uiSlice.actions;
 // export reducers
 export default uiSlice.reducer;

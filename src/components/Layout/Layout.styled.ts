@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components"
+import { MOBILE_WIDTH } from "../../common/constant";
 
 export const Wrapper = styled.div`
     display: flex;
@@ -131,7 +132,7 @@ export const SearchInputBox = styled.input`
     }
     
     /* Media query for mobile devices */
-    @media (max-width: 768px) {
+    @media (max-width: ${MOBILE_WIDTH}px) {
         width: 300px;
         font-size: 16px; /* Better for touch input */
     }

@@ -9,7 +9,6 @@ export const NavbarContainer = styled.div`
     width: 100%;
     background: white;
     padding: 10px 0 10px 0;
-    border: 1px solid red;
 
     @media (max-width: 768px) {
         padding: 5px 0;
@@ -24,6 +23,7 @@ export const NavbarList = styled.ul`
     justify-content: space-around;
     width: 100%;
     padding: 0;
+    
 
     /* Media query for mobile devices */
     @media (max-width: 768px) {
@@ -35,20 +35,29 @@ export const NavbarList = styled.ul`
 export const NavbarItem = styled.li<NavbarItemProps>`
     padding: 10px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
 
     ${({ isActive }) => isActive &&
             css`
-                background-color: red;
-                color: white;
-                border-radius: 4px;
+                color: #d32f2f;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: ${({ theme }) => theme.colors.primary
+                    }
             `
     };
     /* Media query for mobile devices */
     @media (max-width: 768px) {
-        padding: 12px 10px;
+        padding:  10px;
         margin: 0 10px;
 
-        /* Make tap targets larger on mobile */
         &:active {
             opacity: 0.7;
         }
@@ -56,9 +65,13 @@ export const NavbarItem = styled.li<NavbarItemProps>`
         ${({ isActive }) =>
                 isActive &&
                 css`
-                    background-color: red;
-                    color: white;
-                    border-radius: 4px;
-                `}
+                    color: #d32f2f;
+                    background-color: transparent;
+                    border-radius: 0;
+
+                    &:after {
+                        height: 3px;
+                    }
+                `};
     }
 `;

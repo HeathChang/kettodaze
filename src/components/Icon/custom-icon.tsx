@@ -9,11 +9,12 @@ export interface IconProps extends SVGAttributes<SVGElement> {
     width?: number;
     height?: number;
     fill?: string;
+    visible?: boolean;
 }
 
-export default function Icon({ icon, width, height, fill = "none", ...props }: IconProps) {
+export default function Icon({ icon, width, height, fill = "none", visible = true,  ...props }: IconProps) {
     const SVGIcon = icons[icon];
-    return <SVGIcon width={width || 24} height={height || 24} fill={fill} {...props} />;
+    return <SVGIcon width={width || 24} height={height || 24} fill={fill} {...props} display={visible ? "": "none"}/>;
 }
 
 Icon.defaultProps = {

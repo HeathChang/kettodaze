@@ -20,24 +20,28 @@ interface iLayout {
     children: ReactNode;
 }
 
+
 const Layout = ({ children }: iLayout) => {
     const navigate = useNavigate();
-    const ui = useSelector((state: RootState) => state.ui);
+    const { isLoading, isMobile } = useSelector((state: RootState) => state.ui);
     const [activeItem, setActiveItem] = useState<string>(Object.values(eNavList)[0]);
-
+    const [isNavVisible, setNavVisible] = useState(false);
     const handleBack = () => {
 
-    }
+    };
 
     return (
         <Wrapper>
+            {isLoading && <CustomSpinner/>}
+
             <HeaderContainer>
                 <Logo><h1>K-ettodaze</h1></Logo>
 
                 <SearchInputWrapper>
                     <SearchInputBox/>
                     <SearchIconBox>
-                        <Icon icon="IconSearch" onClick={() => {}}/>
+                        <Icon icon="IconSearch" onClick={() => {
+                        }}/>
                     </SearchIconBox>
 
                 </SearchInputWrapper>
@@ -49,19 +53,25 @@ const Layout = ({ children }: iLayout) => {
                     <HeaderButton><h3>마이페이지</h3></HeaderButton>
                 </HeaderButtonWrapper>
             </HeaderContainer>
-            <CustomNavbar activeItem={activeItem} onMouseEnter={(item) => setActiveItem(item)}
-                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {}}/>
 
+            <Icon icon={isNavVisible ? "IconDoubleUp" : "IconDoubleDown"}
+                  style={{ position: "absolute", top: isMobile ? "6%" : "4%", zIndex: 10, cursor: "pointer" }}
+                  onClick={() => setNavVisible(prev => !prev)} visible={isMobile}/>
+
+            <CustomNavbar activeItem={activeItem} onMouseEnter={(item) => setActiveItem(item)}
+                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {}}
+                          visible={isNavVisible}
+
+            />
 
 
             <Body>
                 {children}
             </Body>
-            {ui?.isLoading && <CustomSpinner/>}
 
         </Wrapper>
 
-    )
+    );
 
 
 };
