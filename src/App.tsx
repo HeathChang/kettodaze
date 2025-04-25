@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./styles/globalStyles.styled";
-import Layout from "./common/Layout";
+import Layout from "./components/Layout";
 import { RouterGroup } from "./routes/RouterGroup";
 
 function App() {

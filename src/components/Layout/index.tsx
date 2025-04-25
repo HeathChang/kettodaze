@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { Body, Header, HeaderFont, Wrapper } from "./Layout.styled";
-import { ReactNode } from "react";
-import CustomSpinner from "../../components/Spinner/custom-spinner";
-import Icon from "../../components/Icon/custom-icon";
+import { ReactNode, useState } from "react";
+import CustomSpinner from "../Spinner/custom-spinner";
+import Icon from "../Icon/custom-icon";
+import CustomNavbar from "../Navbar/CustomNavbar";
 
 
 interface iLayout {
@@ -14,6 +15,7 @@ interface iLayout {
 const Layout = ({ children }: iLayout) => {
     const navigate = useNavigate();
     const ui = useSelector((state: RootState) => state.ui);
+    const [activeItem, setActiveItem] = useState<string>('인기 갓챠');
 
     const handleBack = () => {
 
@@ -30,6 +32,9 @@ const Layout = ({ children }: iLayout) => {
                     </Header>
                 )
             }
+            <CustomNavbar activeItem={activeItem} onMouseEnter={()=> {}} onMouseLeave={()=> {}} onMouseClick={() => {}}/>
+
+
 
             <Body>
                 {children}

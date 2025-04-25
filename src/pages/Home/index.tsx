@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setHeader } from "../../store/slices/uiSlice";
+import { HomeBody, HomeContainer } from "./Home.styled";
 
 
 const HomePage = () => {
@@ -11,7 +12,15 @@ const HomePage = () => {
     }, []);
 
     return (
-        <>Hello</>
+        <HomeContainer>
+            <HomeBody>
+                HELLO
+            </HomeBody>
+
+            <HomeBody>
+                HELLO
+            </HomeBody>
+        </HomeContainer>
     )
 }
 
