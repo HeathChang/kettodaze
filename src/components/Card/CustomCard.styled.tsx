@@ -25,18 +25,28 @@ export const CardContainer = styled.div`
     height: max-content;
     width: auto;
     border-radius: 8px;
+    
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
 `;
-
-
 
 
 export const CardImage = styled.img<ImgHTMLAttributes<HTMLImageElement>>`
     width: 200px;
     height: 200px;
-    
+
     border-radius: 8px;
     border: 0.5px solid lightgray;
-    
+    cursor: pointer;
+
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
 `;
 export const CardHeader = styled.div`
     margin-top: 10px;
@@ -67,14 +77,14 @@ export const CardDesc = styled.span`
     height: 24px;
     margin-bottom: 8px;
 
-        font-size: 10px;
-        text-align: left;
-        font-weight: 400;
-        display: -webkit-box;           /* Flexbox처럼 작동하도록 설정 */
-        -webkit-line-clamp: 2;          /* 표시할 최대 줄 수 */
-        -webkit-box-orient: vertical;   /* 수직 박스 방향 설정 */
-        overflow: hidden;               /* 넘치는 텍스트를 숨김 */
-        text-overflow: ellipsis;        /* 넘치는 부분을 "..."로 표시 */
+    font-size: 10px;
+    text-align: left;
+    font-weight: 400;
+    display: -webkit-box; /* Flexbox처럼 작동하도록 설정 */
+    -webkit-line-clamp: 2; /* 표시할 최대 줄 수 */
+    -webkit-box-orient: vertical; /* 수직 박스 방향 설정 */
+    overflow: hidden; /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 부분을 "..."로 표시 */
 `;
 
 export const CardPrice = styled.div`

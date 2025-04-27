@@ -4,7 +4,8 @@ import { MOBILE_WIDTH } from "../../common/constant";
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    //height: 100vh;
+    height: auto;
     min-width: 1160px;
     
     /* Media query for mobile devices */

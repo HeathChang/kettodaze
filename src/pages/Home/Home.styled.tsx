@@ -2,34 +2,56 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: auto;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 4rem
+    gap: 4rem;
+
+
 `;
+
+
 
 
 export const HomeBody = styled.div`
     flex: 1;
     width: 100%;
-    height: 400px;
-    border: 1px solid red;
+    height: 100%;
+    padding: 2rem 4rem 3rem 4rem;
+
+    background-color: ${(props) => props.theme.colors.white};
 `;
+
+export const HomeBodyTitle = styled.div`
+    justify-content: left;
+    width: inherit;
+
+    margin-bottom: 1rem;
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+`;
+
+
 export const CardListContainer = styled.div`
+    justify-content: center;
     border-radius: 8px;
     text-align: center;
     width: inherit;
     //padding: 24px 24px;
     color: black;
     justify-items: center;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    
+    //display: grid;
+    //grid-template-columns: repeat(5, 1fr);
+
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
 `;
-
-
 
 
 export const HomeFooter = styled.div`

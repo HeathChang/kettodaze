@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { CardListContainer, HomeBody, HomeContainer } from "./Home.styled";
+import { CardListContainer, HomeBody, HomeBodyTitle, HomeContainer } from "./Home.styled";
 import CustomCard from "../../components/Card/CustomCard";
+import HomeBanner from "./components/HomeBanner";
 
+// @ts-ignore
 import image1 from "../../assets/images/Gotchas/001-sanrio-characters.jpeg";
+// @ts-ignore
 import image2 from "../../assets/images/Gotchas/002-shinchan-machibouke.jpeg";
+// @ts-ignore
 import image3 from "../../assets/images/Gotchas/003-shinchan-camping.jpeg";
+// @ts-ignore
 import image4 from "../../assets/images/Gotchas/005-shinchan-oyasumika.jpeg";
+// @ts-ignore
 import image5 from "../../assets/images/Gotchas/006-shinchan-sanrio.jpeg";
-
 
 const cardArrayList = [
     {image: image1, title: "산리오 친구들", price: "9000", desc: "테스트 카드입니다."},
@@ -22,13 +27,13 @@ const cardArrayList = [
 const HomePage = () => {
     const dispatch = useDispatch()
 
-    useEffect(() => {
 
-    }, []);
 
     return (
         <HomeContainer>
+            <HomeBanner imageArray={[]}/>
             <HomeBody>
+                <HomeBodyTitle>추천 갓챠</HomeBodyTitle>
                 <CardListContainer>
                     {
                         cardArrayList.map((card, index) => (
@@ -36,10 +41,18 @@ const HomePage = () => {
                         ))
                     }
                 </CardListContainer>
-            </HomeBody>
 
+            </HomeBody>
             <HomeBody>
-                HELLO2
+                <HomeBodyTitle>최근 발매 갓챠</HomeBodyTitle>
+                <CardListContainer>
+                    {
+                        cardArrayList.map((card, index) => (
+                            <CustomCard key={index} image={card.image} title={card.title} price={card.price} desc={card.desc}/>
+                        ))
+                    }
+                </CardListContainer>
+
             </HomeBody>
         </HomeContainer>
     )
