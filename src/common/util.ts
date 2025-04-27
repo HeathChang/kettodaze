@@ -4,3 +4,19 @@ export const isEmpty = (value: any): boolean => {
     if (Array.isArray(value)) return value.length === 0;
     return false;
 };
+
+export const formatCurrency = (value: any) => {
+    let numberValue: number;
+
+    if (typeof value === "string") {
+        numberValue = Number(value.replace(/,/g, ""));
+        if (isNaN(numberValue)) return "-";
+    } else if (typeof value === "number") {
+        numberValue = value;
+    } else {
+        return "-";
+    }
+
+    const formatted = numberValue.toLocaleString("ko-KR", { style: "currency", currency: "KRW" });
+    return formatted.replace("₩", "₩ ");
+}

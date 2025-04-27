@@ -14,12 +14,21 @@ import CustomSpinner from "../Spinner/custom-spinner";
 import Icon from "../Icon/custom-icon";
 import CustomNavbar from "../Navbar/CustomNavbar";
 import { eNavList } from "../../types/types";
+import CustomInput from "../Input/CustomInput";
+import { PLACE_HOLDERS, PROJECT_TITLE } from "../../common/constant";
 
 
 interface iLayout {
     children: ReactNode;
 }
 
+
+const HeaderButtonArray = [
+    {title: "홈", targetUrl:""},
+    {title: "가챠", targetUrl:""},
+    {title: "내주변", targetUrl:""},
+    {title: "마이페이지", targetUrl:""},
+]
 
 const Layout = ({ children }: iLayout) => {
     const navigate = useNavigate();
@@ -35,22 +44,13 @@ const Layout = ({ children }: iLayout) => {
             {isLoading && <CustomSpinner/>}
 
             <HeaderContainer>
-                <Logo><h1>K-ettodaze</h1></Logo>
-
-                <SearchInputWrapper>
-                    <SearchInputBox/>
-                    <SearchIconBox>
-                        <Icon icon="IconSearch" onClick={() => {
-                        }}/>
-                    </SearchIconBox>
-
-                </SearchInputWrapper>
+                <Logo><h1>{PROJECT_TITLE}</h1></Logo>
+                <CustomInput onClick={()=>{}} onChange={() =>{}} placeHolder={PLACE_HOLDERS.SEARCH_GOTCHA}/>
 
                 <HeaderButtonWrapper>
-                    <HeaderButton>홈</HeaderButton>
-                    <HeaderButton>가챠</HeaderButton>
-                    <HeaderButton>내 주변</HeaderButton>
-                    <HeaderButton>마이페이지</HeaderButton>
+                    {HeaderButtonArray.map((button, index) => (
+                        <HeaderButton onClick={()=>{}} key={index}>{button.title}</HeaderButton>
+                    ))}
                 </HeaderButtonWrapper>
             </HeaderContainer>
 
@@ -59,8 +59,7 @@ const Layout = ({ children }: iLayout) => {
                   onClick={() => setNavVisible(prev => !prev)} visible={isMobile}/>
 
             <CustomNavbar activeItem={activeItem} onMouseEnter={(item) => setActiveItem(item)}
-                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {
-            }}
+                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {}}
                           visible={isNavVisible}
 
             />

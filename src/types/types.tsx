@@ -22,6 +22,6 @@ export interface iDefaultInterface {
     onClick?: (params?: any) => void;
     onClose?: (params?: any) => void;
     onPress?: (params?: any) => void;
-    visible: boolean;
+    visible?: boolean;
 
 }

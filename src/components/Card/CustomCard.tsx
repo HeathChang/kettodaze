@@ -1,8 +1,19 @@
-import { CardBody, CardContainer, CardHeader, CardImage, CardListContainer } from "./CustomCard.styled";
+import {
+    CardBody,
+    CardContainer,
+    CardDesc,
+    CardHeader,
+    CardIcon,
+    CardImage,
+    CardPrice,
+    CardTitle
+} from "./CustomCard.styled";
+import Icon from "../Icon/custom-icon";
+import { formatCurrency } from "../../common/util";
 
 
 interface iCustomCard {
-    imageList: any[];
+    image: string;
     title: string;
     price: string | number;
     desc: string;
@@ -10,17 +21,19 @@ interface iCustomCard {
 
 const CustomCard = (props: iCustomCard) => {
     return (
-        <CardListContainer>
             <CardContainer>
-                <CardImage/>
+                <CardImage src={props.image} />
                 <CardHeader>
-
+                    <CardTitle>{props.title}</CardTitle>
+                    <CardIcon>
+                        <Icon className="icon" icon="IconSearch" onClick={()=>{}}/>
+                    </CardIcon>
                 </CardHeader>
                 <CardBody>
-
+                    <CardPrice>{formatCurrency(props.price)}</CardPrice>
+                    <CardDesc>{props.desc}</CardDesc>
                 </CardBody>
             </CardContainer>
-        </CardListContainer>
     )
 }
 

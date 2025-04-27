@@ -48,6 +48,7 @@ export const Logo = styled.div`
     position: relative;
     width: 230px;
     cursor: pointer;
+    flex: 0.5;
 
     /* Media query for mobile devices */
     @media (max-width: 768px) {
