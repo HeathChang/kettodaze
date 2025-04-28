@@ -6,24 +6,25 @@ import dummyImage1 from "../../../assets/images/sample-banner.jpeg";
 import dummyImage2 from "../../../assets/images/sample-banner.jpeg";
 // @ts-ignore
 import dummyImage3 from "../../../assets/images/sample-banner.jpeg";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import CustomSwiper from "../../../components/Swiper/CustomSwiper";
-
+import { SwiperImage } from "../../../components/Swiper/CustomSwiper.styles";
+import { SwiperSlide } from "swiper/react";
 
 
 interface iHomeBanner {
     imageArray?: any[];
 }
 
-const imageArrayList=  [
+const imageArrayList = [
     dummyImage1,
     dummyImage2,
     dummyImage3,
-]
+];
 
 const swiperOptions = {
     loop: true,
@@ -38,19 +39,23 @@ const swiperOptions = {
         clickable: true, // 페이지네이션 클릭 가능
     },
     navigation: true, // 네비게이션 활성화
-}
+};
 
 
 const HomeBanner = (props: iHomeBanner) => {
 
     return (
         <HomeBannerContainer>
-            <CustomSwiper options={swiperOptions} imageList={imageArrayList}/>
+            <CustomSwiper options={swiperOptions}>
+                {imageArrayList?.map((image, index) => (
+                    <SwiperSlide key={index}>
+                        <SwiperImage src={image} alt={`Banner-${index}`}/>
+                    </SwiperSlide>
+                ))}
+            </CustomSwiper>
         </HomeBannerContainer>
-    )
+    );
 };
-
-
 
 
 export default HomeBanner;

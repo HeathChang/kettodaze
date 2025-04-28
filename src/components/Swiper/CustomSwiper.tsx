@@ -1,7 +1,6 @@
-import React from "react";
-import { SwiperSlide } from "swiper/react";
+import React, { ReactNode } from "react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
-import { StyledSwiper } from "./CustomSwiper.styles";
+import { StyledSwiper, SwiperImage } from "./CustomSwiper.styles";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,24 +9,17 @@ import "swiper/css/pagination";
 
 interface DefaultSwiperProps {
     options?: {};
-    imageList?: string[];
+    children: ReactNode;
 }
 
 
-const CustomSwiper: React.FC<DefaultSwiperProps> = ({ options, imageList }) => {
-
+const CustomSwiper: React.FC<DefaultSwiperProps> = ({ children, options }) => {
     return (
         <StyledSwiper
             {...options}
             modules={[Navigation, Pagination, A11y, Autoplay]}
         >
-            <div className="image-wrapper">
-                {imageList?.map((image, index) => (
-                    <SwiperSlide key={index}>
-                        <img src={image} alt="Profile Background" width="1000" height="400" />
-                    </SwiperSlide>
-                ))}
-            </div>
+            {children}
         </StyledSwiper>
     );
 };
