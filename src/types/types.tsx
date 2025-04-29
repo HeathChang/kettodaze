@@ -1,14 +1,13 @@
 // ENUM
 export enum eNavList {
-    DEFAULT = '',
-    Popular = '인기 갓챠',
-    Latest = '최신 갓챠',
-    ByProduct = '제품별',
-    Event = '이벤트 갓챠',
-    Random = '랜덤 갓챠',
-    HelpMe = '구해줘 갓챠',
-    ComingSoon = '입고예정 갓챠',
-    AlmostIn = '입고 임박 갓챠',
+    // DEFAULT = '',
+    POPULAR = '인기 갓챠', // 인기 갓차
+    LATEST = '최신 갓챠', // 최근
+    // TYPE = '제품별',
+    EVENT = '이벤트 갓챠', // 할인
+    // RANDOM = '랜덤 갓챠',
+    FIND = '구해줘 갓챠', //필요한 갓챠
+    SOON = '입고예정 갓챠' // 곧 입고예정
 }
 
 

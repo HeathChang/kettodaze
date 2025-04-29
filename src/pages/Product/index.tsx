@@ -32,8 +32,8 @@ import {
     SellerHeader,
     SellerHeaderItem,
     SellerItem,
-    SellerName,
-    SellerAddress, SellerPrice, SellerDate, SellersListBox, SellersList, SellersListMap,
+    SellerBodyItem,
+    SellersListBox, SellersList, SellersListMap, SellersHint,
 } from "./Product.styled";
 
 
@@ -79,53 +79,59 @@ const productData = {
         { label: "Weight", value: "250g" },
         { label: "Warranty", value: "1 year" },
     ],
-    deliveryOptions: [
-        { name: "Standard Delivery", price: "Free", time: "3-5 business days" },
-        { name: "Express Delivery", price: "$9.99", time: "1-2 business days" },
+    productDetails: [
+        { name: "총 품종", value: "7" },
+        { name: "제작사", value: "반다이남코코리아" },
     ],
     // New sellers data
     sellers: [
         {
-            id: "s1",
-            name: "Electronics Superstore",
-            address: "123 Main St, New York, NY 10001",
-            price: 99.99,
+            id: "seller1",
+            name: "전자랜드 종로점",
+            address: "서울특별시 종로구 종로 123",
+            price: 99000,
             updatedAt: "2023-04-15",
+            phone: "02-123-4567",
         },
         {
-            id: "s2",
-            name: "Audio Experts",
-            address: "456 Tech Blvd, San Francisco, CA 94107",
-            price: 105.5,
+            id: "seller2",
+            name: "오디오 전문가",
+            address: "서울특별시 강남구 테헤란로 456",
+            price: 105000,
             updatedAt: "2023-04-18",
+            phone: "02-987-6543",
         },
         {
-            id: "s3",
-            name: "Discount Electronics",
-            address: "789 Budget Ave, Chicago, IL 60007",
-            price: 89.99,
+            id: "seller3",
+            name: "할인전자",
+            address: "부산광역시 해운대구 센텀중앙로 789",
+            price: 89000,
             updatedAt: "2023-04-12",
+            phone: "051-234-5678",
         },
         {
-            id: "s4",
-            name: "Premium Sound Shop",
-            address: "101 Quality Rd, Boston, MA 02108",
-            price: 109.99,
+            id: "seller4",
+            name: "프리미엄 사운드샵",
+            address: "대전광역시 서구 둔산로 101",
+            price: 110000,
             updatedAt: "2023-04-20",
+            phone: "042-321-8765",
         },
         {
-            id: "s5",
-            name: "Music & More",
-            address: "202 Melody Lane, Austin, TX 78701",
-            price: 95.99,
+            id: "seller5",
+            name: "뮤직앤모어",
+            address: "대구광역시 수성구 음악길 202",
+            price: 96000,
             updatedAt: "2023-04-17",
+            phone: "053-456-7890",
         },
         {
-            id: "s6",
-            name: "Tech Warehouse",
-            address: "303 Gadget St, Seattle, WA 98101",
-            price: 92.5,
+            id: "seller6",
+            name: "테크 창고",
+            address: "인천광역시 연수구 가젯로 303",
+            price: 92500,
             updatedAt: "2023-04-19",
+            phone: "032-678-1234",
         },
     ],
     relatedProducts: [
@@ -200,8 +206,20 @@ const ProductPage = () => {
         <ProductContainer>
             <ProductHeader>
                 <ProductImageGallery>
-                    <MainImage src={image1} alt={productData.name}/>
+                    <MainImage src={image1} alt={productData.name}
+                               onClick={() => window.open(image1, "_blank", "width=1000,height=800,scrollbars=yes,resizable=yes")}/>
 
+                    <Divider/>
+
+                    <DeliveryInfo>
+                        <h4>상품 정보</h4>
+                        {productData.productDetails.map((detail, index) => (
+                            <DeliveryOption key={index}>
+                                <h5>{detail.name}</h5>
+                                <p>{detail?.value}</p>
+                            </DeliveryOption>
+                        ))}
+                    </DeliveryInfo>
                 </ProductImageGallery>
 
                 <ProductInfo>
@@ -234,67 +252,67 @@ const ProductPage = () => {
                     <Divider/>
 
                     <DeliveryInfo>
-                        <h4>상품 설명</h4>
-                        {productData.deliveryOptions.map((option, index) => (
-                            <DeliveryOption key={index}>
-                                {/*<Truck size={16} />*/}
-                                <div>
-                                    <h5>{option.name}</h5>
-                                    <p>
-                                        {option.price} • {option.time}
-                                    </p>
-                                </div>
-                            </DeliveryOption>
-                        ))}
+                        <h4>상점 최저가</h4>
+                        <SellersListContainer>
+                            <SellerHeader>
+                                <SellerHeaderItem flex={1}>상호명</SellerHeaderItem>
+                                <SellerHeaderItem flex={1}>가격</SellerHeaderItem>
+                                <SellerHeaderItem flex={1}>수정일자</SellerHeaderItem>
+                            </SellerHeader>
+
+                            {productData.sellers.map((seller) => (
+                                <SellerItem key={seller.id}>
+                                    <SellerBodyItem flex={"1"} color={"#333"}>{seller.name}</SellerBodyItem>
+                                    <SellerBodyItem flex={"1"}
+                                                    color={"#e53935"}>{formatCurrency(seller.price)}</SellerBodyItem>
+                                    <SellerBodyItem flex={"1"} color={"#888"}>{seller.updatedAt}</SellerBodyItem>
+                                </SellerItem>
+                            ))}
+                        </SellersListContainer>
                     </DeliveryInfo>
-                    <Divider/>
                 </ProductInfo>
                 <Divider/>
             </ProductHeader>
 
 
-
             <Divider/>
 
+            <ProductContent>
+                <SellersList>
+                    <SellersListTitle>판매점 상세보기</SellersListTitle>
 
-            <SellersList>
-                <h4>근처 판매점</h4>
+                    <SellersListBox>
+                        <SellersListContainer>
+                            <SellerHeader>
+                                <SellerHeaderItem flex={1}>상호명</SellerHeaderItem>
+                                <SellerHeaderItem flex={2}>주소</SellerHeaderItem>
+                                <SellerHeaderItem flex={1}>번호</SellerHeaderItem>
+                                <SellerHeaderItem flex={1}>가격</SellerHeaderItem>
+                                <SellerHeaderItem flex={1}>수정일자</SellerHeaderItem>
+                            </SellerHeader>
 
-                <SellersListBox>
-                    <SellersListContainer>
-                        <SellerHeader>
-                            <SellerHeaderItem style={{ flex: 2 }}>Store</SellerHeaderItem>
-                            <SellerHeaderItem style={{ flex: 3 }}>Address</SellerHeaderItem>
-                            <SellerHeaderItem style={{ flex: 1 }}>Price</SellerHeaderItem>
-                            <SellerHeaderItem style={{ flex: 1 }}>Updated</SellerHeaderItem>
-                        </SellerHeader>
+                            {productData.sellers.map((seller) => (
+                                <SellerItem key={seller.id}>
+                                    <SellerBodyItem flex={"1"} color={"#333"}>{seller.name}</SellerBodyItem>
+                                    <SellerBodyItem flex={"2"} color={"#666"}>{seller.address}</SellerBodyItem>
+                                    <SellerBodyItem flex={"1"} color={"#666"}>{seller.phone}</SellerBodyItem>
+                                    <SellerBodyItem flex={"1"}
+                                                    color={"#e53935"}>{formatCurrency(seller.price)}</SellerBodyItem>
+                                    <SellerBodyItem flex={"1"} color={"#888"}>{seller.updatedAt}</SellerBodyItem>
+                                </SellerItem>
+                            ))}
+                        </SellersListContainer>
+                        <SellersListMap/>
+                    </SellersListBox>
 
-                        {productData.sellers.map((seller) => (
-                            <SellerItem key={seller.id}>
-                                <SellerName>
-                                    {seller.name}
-                                </SellerName>
-                                <SellerAddress>
-                                    <MapPin size={14}/>
-                                    {seller.address}
-                                </SellerAddress>
-                                <SellerPrice>${seller.price.toFixed(2)}</SellerPrice>
-                                <SellerDate>
-                                    <Calendar size={14}/>
-                                    {seller.updatedAt}
-                                </SellerDate>
-                            </SellerItem>
-                        ))}
-                    </SellersListContainer>
-                    <SellersListMap/>
-                </SellersListBox>
-            </SellersList>
+                    <SellersHint>
+                        위에 소개된 판매점마다 상황이 다를 수 있어서, 방문하시기 전에 한 번 전화로 재고를 확인해보시는 걸 추천드려요!
+                    </SellersHint>
 
-
+                </SellersList>
+            </ProductContent>
 
             <ProductContent>
-
-
                 <ProductDescription>
                     <MainImage src={image1} alt="" style={{ width: '200px', height: "200px", alignSelf: "center" }}/>
                     가챠 상품은 특성상 검품후 출고가 불가하여 제조사 문제로 인한 교환은 기본적으로 불가합니다.
@@ -316,18 +334,6 @@ const ProductPage = () => {
                             }}/>
                         ))
                     }
-                    {/*    {productData.relatedProducts.map((product) => (*/}
-                    {/*        <RelatedProductCard key={product.id} onClick={() => navigate(`/product/${product.id}`)}>*/}
-                    {/*            <RelatedProductImage*/}
-                    {/*                src={`/placeholder.svg?height=200&width=200&query=electronics ${product.name}`}*/}
-                    {/*                alt={product.name}*/}
-                    {/*            />*/}
-                    {/*            <RelatedProductName>{product.name}</RelatedProductName>*/}
-                    {/*            <RelatedProductPrice>${product.price.toFixed(2)}</RelatedProductPrice>*/}
-                    {/*        </RelatedProductCard>*/}
-                    {/*    ))}*/}
-
-
                 </RelatedProductsGrid>
             </RelatedProductsSection>
         </ProductContainer>

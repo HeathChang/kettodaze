@@ -40,13 +40,12 @@ export const HomeBodyContent = styled.div`
     //border-radius: 8px;
     //text-align: center;
     width: inherit;
-    min-width: 1300px;
+    min-width: 350px;
     //color: black;
     justify-items: center;
     padding: 2rem;
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     //gap: 2rem;
 
 `;

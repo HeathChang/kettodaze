@@ -35,16 +35,38 @@ const Layout = ({ children }: iLayout) => {
     const { isLoading, isMobile } = useSelector((state: RootState) => state.ui);
     const [activeItem, setActiveItem] = useState<string>(Object.values(eNavList)[0]);
     const [isNavVisible, setNavVisible] = useState(false);
-    const handleBack = () => {
 
-    };
+
+    const handleClickNavItem = (params: eNavList)=> {
+        if(!params) return false;
+        let url = ''
+        switch (params){
+            case eNavList.POPULAR:
+                url = "popular";
+                break;
+            case eNavList.LATEST:
+                url = "latest";
+                break;
+            case eNavList.EVENT:
+                url = "event";
+                break;
+            case eNavList.FIND:
+                url = "find";
+                break;
+            case eNavList.SOON:
+                url = "soon";
+                break;
+        }
+        navigate(`/search?searchBy=${url}`)
+
+    }
 
     return (
         <Wrapper>
             {isLoading && <CustomSpinner/>}
 
             <HeaderContainer>
-                <Logo><h1>{PROJECT_TITLE}</h1></Logo>
+                <Logo onClick={() => navigate("/")}><h1>{PROJECT_TITLE}</h1></Logo>
                 <CustomInput onClick={()=>{}} onChange={() =>{}} placeHolder={PLACE_HOLDERS.SEARCH_GOTCHA}/>
 
                 <HeaderButtonWrapper>
@@ -59,7 +81,7 @@ const Layout = ({ children }: iLayout) => {
                   onClick={() => setNavVisible(prev => !prev)} visible={isMobile}/>
 
             <CustomNavbar activeItem={activeItem} onMouseEnter={(item) => setActiveItem(item)}
-                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={() => {}}
+                          onMouseLeave={(item) => setActiveItem(item)} onMouseClick={(item) => handleClickNavItem(item)}
                           visible={isNavVisible}
 
             />

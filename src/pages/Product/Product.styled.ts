@@ -11,7 +11,7 @@ export const ProductContainer = styled.div`
     gap: 4rem;
 
     margin: 0 auto;
-    padding: 2rem;
+    padding: 4rem 2rem;
 
 
     @media (max-width: 768px) {
@@ -44,6 +44,7 @@ export const MainImage = styled.img`
     border-radius: 8px;
     object-fit: cover;
     margin-bottom: 1rem;
+    cursor: pointer;
 `;
 
 export const ThumbnailContainer = styled.div`
@@ -311,7 +312,8 @@ export const TabButton = styled.button<TabProps>`
 export const ProductContent = styled.div`
     margin-bottom: 3rem;
     padding: 2rem;
-
+    width: 100%;
+    min-width: calc(600px + 1rem);
 `;
 
 export const ProductDescription = styled.div`
@@ -356,20 +358,28 @@ export const RelatedProductsGrid = styled.div`
     }
 `;
 
+export const SellersHint = styled.span`
+    margin-top: 1rem;
+`;
+
 export const SellersList = styled.div`
     margin-bottom: 3rem;
     width: 100%;
     padding: 2rem;
-`;
-
-export const SellersListBox = styled.div`
-    border: 1px solid blue;
-    display: flex;
-    flex-direction: row;
-    height: 300px;
     @media (max-width: 1080px) {
         flex-direction: column;
     }
+`;
+
+export const SellersListBox = styled.div`
+    display: flex;
+    flex-direction: row;
+    //height: 400px;
+    gap: 1rem;
+    height: auto;
+    min-height: 400px;
+    min-width: calc(600px + 1rem);
+
 `;
 
 export const SellersListTitle = styled.h2`
@@ -379,10 +389,14 @@ export const SellersListTitle = styled.h2`
 `;
 
 export const SellersListMap = styled.div`
-    width: 100%;
+    //width: 100%;
+    height: 100%;
     flex: 1;
-    height: inherit;
-    border: 1px solid red;
+    //height: inherit;
+    min-height: 400px;
+    min-width: 400px;
+    border: .5px solid lightgray;
+    border-radius: 1rem;
 `;
 
 
@@ -391,9 +405,11 @@ export const SellersListContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
     max-height: 400px;
+    min-width: 200px;
+
     overflow-y: auto;
     width: 100%;
-    flex: 1;
+    flex: 1.5;
     &::-webkit-scrollbar {
         width: 6px;
     }
@@ -410,6 +426,8 @@ export const SellersListContainer = styled.div`
     &::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+    
+ 
 `;
 
 export const SellerHeader = styled.div`
@@ -427,9 +445,10 @@ export const SellerHeader = styled.div`
     }
 `;
 
-export const SellerHeaderItem = styled.div`
+export const SellerHeaderItem = styled.div<{flex ?: any}>`
     color: #555;
     font-size: 0.9rem;
+    flex: ${({ flex }) => flex || '1'};
 `;
 
 export const SellerItem = styled.div`
@@ -452,51 +471,18 @@ export const SellerItem = styled.div`
     }
 `;
 
-export const SellerName = styled.div`
-    flex: 2;
+export const SellerBodyItem = styled.div<{
+    flex?: string;
+    color?: string;
+}>`
+    flex: ${({ flex }) => flex || '1'};
     font-weight: 500;
-    color: #333;
-
-    @media (max-width: 768px) {
-        font-size: 1.1rem;
-    }
-`;
-
-export const SellerAddress = styled.div`
-    flex: 3;
-    color: #666;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    color: ${({ color }) => color || '#333'};
 
     @media (max-width: 768px) {
-        margin-top: 0.25rem;
         font-size: 0.9rem;
     }
 `;
-
-export const SellerPrice = styled.div`
-    flex: 1;
-    font-weight: 600;
-    color: #e53935;
-
-    @media (max-width: 768px) {
-        margin-top: 0.5rem;
-        font-size: 1.1rem;
-    }
-`;
-
-export const SellerDate = styled.div`
-    flex: 1;
-    color: #888;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    @media (max-width: 768px) {
-        margin-top: 0.25rem;
-        font-size: 0.85rem;
-    }
-`;
-
 
