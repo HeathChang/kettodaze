@@ -1,9 +1,9 @@
 import { NavbarContainer, NavbarItem, NavbarList } from "./CustomNavbar.styled";
 import { eNavList } from "../../types/types";
 import { isEmpty } from "../../common/util";
-import Icon from "../Icon/custom-icon";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { useSearchParams } from "react-router-dom";
 
 interface iCustomNavbar {
     activeItem: string,
@@ -16,6 +16,8 @@ interface iCustomNavbar {
 
 const CustomNavbar = (props: iCustomNavbar) => {
     const { isMobile } = useSelector((state: RootState) => state.ui);
+    const [searchParams] = useSearchParams();
+    const searchBy = searchParams.get('searchBy');
 
     return (
         <NavbarContainer style={{
@@ -27,14 +29,15 @@ const CustomNavbar = (props: iCustomNavbar) => {
             })
         }}>
             <NavbarList>
-                {Object.values(eNavList).map((item, index) => (
+                {Object.entries(eNavList).map(([item, value], index) => (
                     !isEmpty(item) &&
 					<NavbarItem key={index}
 								isActive={item === props.activeItem}
+                                isSelected={!isEmpty(searchBy) && item === searchBy?.toUpperCase()}
 								onMouseOver={() => props.onMouseEnter(item)}
 								onMouseLeave={() => props.onMouseLeave()}
-								onClick={() => props.onMouseClick(item)}
-					>{item}
+								onClick={() => props.onMouseClick(value)}
+					>{value}
 					</NavbarItem>
                 ))}
             </NavbarList>

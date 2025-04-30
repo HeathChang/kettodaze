@@ -1,4 +1,6 @@
 // ENUM
+import { ReactNode } from "react";
+
 export enum eNavList {
     // DEFAULT = '',
     POPULAR = '인기 갓챠', // 인기 갓차
@@ -22,5 +24,6 @@ export interface iDefaultInterface {
     onClose?: (params?: any) => void;
     onPress?: (params?: any) => void;
     visible?: boolean;
+    children ?: ReactNode;
 
 }

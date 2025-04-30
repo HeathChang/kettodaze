@@ -4,7 +4,6 @@ import { RootState } from "../../store/store";
 import {
     Body,
     HeaderContainer,
-    Logo,
     SearchInputBox,
     SearchInputWrapper, HeaderButtonWrapper,
     Wrapper, HeaderButton, SearchIconBox
@@ -16,6 +15,7 @@ import CustomNavbar from "../Navbar/CustomNavbar";
 import { eNavList } from "../../types/types";
 import CustomInput from "../Input/CustomInput";
 import { PLACE_HOLDERS, PROJECT_TITLE } from "../../common/constant";
+import Logo from "../Logo/Logo";
 
 
 interface iLayout {
@@ -24,10 +24,8 @@ interface iLayout {
 
 
 const HeaderButtonArray = [
-    {title: "홈", targetUrl:""},
-    {title: "가챠", targetUrl:""},
-    {title: "내주변", targetUrl:""},
-    {title: "마이페이지", targetUrl:""},
+    {title: "내주변", targetUrl:"/nearby-store"},
+    {title: "마이페이지", targetUrl:"/my-page"},
 ]
 
 const Layout = ({ children }: iLayout) => {
@@ -66,12 +64,12 @@ const Layout = ({ children }: iLayout) => {
             {isLoading && <CustomSpinner/>}
 
             <HeaderContainer>
-                <Logo onClick={() => navigate("/")}><h1>{PROJECT_TITLE}</h1></Logo>
+                <Logo onClick={() => navigate("/")}/>
                 <CustomInput onClick={()=>{}} onChange={() =>{}} placeHolder={PLACE_HOLDERS.SEARCH_GOTCHA}/>
 
                 <HeaderButtonWrapper>
                     {HeaderButtonArray.map((button, index) => (
-                        <HeaderButton onClick={()=>{}} key={index}>{button.title}</HeaderButton>
+                        <HeaderButton onClick={()=> navigate(button.targetUrl)} key={index}>{button.title}</HeaderButton>
                     ))}
                 </HeaderButtonWrapper>
             </HeaderContainer>

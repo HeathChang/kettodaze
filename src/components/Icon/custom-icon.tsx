@@ -1,5 +1,5 @@
 import { SVGAttributes } from "react";
-import * as icons from "./index";
+import * as icons from "./Icon";
 
 export type IconType = keyof typeof icons;
 export const iconTypes: IconType[] = Object.keys(icons) as IconType[];

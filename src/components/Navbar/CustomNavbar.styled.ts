@@ -1,8 +1,5 @@
 import styled, { css } from "styled-components";
 
-interface NavbarItemProps {
-    isActive: boolean;
-}
 
 export const NavbarContainer = styled.div`
     text-align: center;
@@ -23,7 +20,7 @@ export const NavbarList = styled.ul`
     justify-content: space-around;
     width: 100%;
     padding: 0;
-    
+
 
     /* Media query for mobile devices */
     @media (max-width: 768px) {
@@ -32,16 +29,28 @@ export const NavbarList = styled.ul`
     }
 `;
 
+interface NavbarItemProps {
+    isActive?: boolean;
+    isSelected?: boolean;
+}
+
 export const NavbarItem = styled.li<NavbarItemProps>`
     padding: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    font-size: ${({ theme }) => theme.fontSizes.md};
 
-    ${({ isActive }) => isActive &&
+    ${({ isSelected = false, theme }) => isSelected &&
             css`
-                color: #d32f2f;
+                color: ${theme.colors.error};
+                font-weight: ${theme.fontWeights.bold};
+            `
+    };
 
+
+    ${({ isActive = false }) => isActive &&
+            css`
                 &:after {
                     content: '';
                     position: absolute;
@@ -51,11 +60,10 @@ export const NavbarItem = styled.li<NavbarItemProps>`
                     height: 2px;
                     background-color: ${({ theme }) => theme.colors.primary
                     }
-            `
-    };
+            `};
     /* Media query for mobile devices */
     @media (max-width: 768px) {
-        padding:  10px;
+        padding: 10px;
         margin: 0 10px;
 
         &:active {
