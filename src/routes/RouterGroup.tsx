@@ -6,6 +6,7 @@ import SearchPage from "../pages/Search";
 import MyPage from "../pages/MyPage";
 import NearbyStorePage from "../pages/NearbyStore";
 import Login from '../components/Login/Login';
+import SignIn from "../pages/SignIn";
 
 
 
@@ -19,7 +20,7 @@ export const RouterGroup = () => {
             <Route path="search" element={<SearchPage/>}/>
             <Route path="nearby-store" element={<NearbyStorePage/>}/>
             <Route path="my-page" element={<MyPage/>}/>
-            <Route path="test" element={<Login/>}/>
+            <Route path="test" element={<SignIn onBackToLogin={()=>{}}/>}/>
         </RoutesGroups>
     );
 };
