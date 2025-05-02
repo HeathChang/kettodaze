@@ -125,12 +125,13 @@ export const ErrorMessage = styled.span`
 export const StyledButton = styled.button`
     width: 100%;
     padding: 0.85rem;
+    
     background-color: #ff6b6b;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
     cursor: pointer;
     transition: background-color 0.2s ease;
     margin-top: 0.5rem;
@@ -220,7 +221,7 @@ export const RegisterLink = styled.div`
     font-size: 0.9rem;
     color: #666;
 
-    a {
+    span {
         color: #ff6b6b;
         font-weight: 600;
         text-decoration: none;

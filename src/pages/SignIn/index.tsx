@@ -25,9 +25,11 @@ import {
     StyledSelect,
 } from "./SignIn.styled";
 import { ArrowLeft, ArrowRight, Check, Mail, Lock, User, MapPin, Calendar, Eye, EyeOff } from 'lucide-react';
+import Logo from "../../components/Logo/Logo";
+import { useNavigate } from "react-router-dom";
 
 interface SignInPageProps {
-    onBackToLogin: () => void;
+
 }
 
 interface FormData {
@@ -68,7 +70,7 @@ const initialErrors = {
     agreePrivacy: "",
 };
 
-const regions = [
+const regionsArr = [
     "서울",
     "부산",
     "인천",
@@ -90,12 +92,13 @@ const regions = [
 
 const birthYears = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i - 10);
 
-const SignIn = ({ onBackToLogin }: SignInPageProps) => {
+const SignIn = (props: SignInPageProps) => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const [errors, setErrors] = useState(initialErrors);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target as HTMLInputElement;
@@ -205,7 +208,7 @@ const SignIn = ({ onBackToLogin }: SignInPageProps) => {
         if (step > 1) {
             setStep(step - 1);
         } else {
-            onBackToLogin();
+            navigate("/login");
         }
     };
 
@@ -216,19 +219,18 @@ const SignIn = ({ onBackToLogin }: SignInPageProps) => {
             console.log("Sign-in submitted:", formData);
             // Here you would typically send the data to your API
             alert("회원가입이 완료되었습니다!");
-            onBackToLogin();
+            navigate("/login");
         }
     };
 
     return (
         <SignInContainer>
             <SignInCard>
-                <LogoContainer>
-                </LogoContainer>
+                <LogoContainer><Logo onClick={() => navigate("/")}/></LogoContainer>
+
 
                 <BackToLogin onClick={handlePrev}>
                     <ArrowLeft size={16}/>
-                    {step === 1 ? "로그인으로 돌아가기" : "이전 단계로"}
                 </BackToLogin>
 
                 <SignInHeader>
@@ -383,7 +385,7 @@ const SignIn = ({ onBackToLogin }: SignInPageProps) => {
                                         hasError={!!errors.region}
                                     >
                                         <option value="">지역 선택</option>
-                                        {regions.map((region) => (
+                                        {regionsArr.map((region) => (
                                             <option key={region} value={region}>
                                                 {region}
                                             </option>
@@ -464,7 +466,7 @@ const SignIn = ({ onBackToLogin }: SignInPageProps) => {
 
                     {step < 3 ? (
                         <StyledButton type="button" onClick={handleNext}>
-                            다음 단계 <ArrowRight size={16}/>
+                            다음 단계
                         </StyledButton>
                     ) : (
                         <StyledButton type="submit">회원가입 완료</StyledButton>

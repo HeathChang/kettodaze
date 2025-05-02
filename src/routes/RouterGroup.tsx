@@ -20,7 +20,8 @@ export const RouterGroup = () => {
             <Route path="search" element={<SearchPage/>}/>
             <Route path="nearby-store" element={<NearbyStorePage/>}/>
             <Route path="my-page" element={<MyPage/>}/>
-            <Route path="test" element={<SignIn onBackToLogin={()=>{}}/>}/>
+            <Route path="login" element={<Login/>}/>
+            <Route path="Signin" element={<SignIn/>}/>
         </RoutesGroups>
     );
 };

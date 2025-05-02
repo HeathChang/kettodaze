@@ -12,7 +12,7 @@ import {
     StyledInput
 } from "./Login.styled";
 import { Eye, EyeOff, Mail, Lock, Github, Twitter } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
@@ -26,6 +26,16 @@ export const Login = () => {
     const navigate = useNavigate();
 
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("handle Submit");
+    };
+
+    const handleForgetPassword = (e: any) => {
+        e.preventDefault();
+        console.log("handleForgetPassword");
+    }
+
     return (
         <LoginContainer>
             <LoginCard>
@@ -36,7 +46,7 @@ export const Login = () => {
                     <p>일본 가챠 매장을 찾는 가장 쉬운 방법</p>
                 </LoginHeader>
 
-                <LoginForm onSubmit={() => {}}>
+                <LoginForm onSubmit={handleSubmit}>
                     <InputGroup>
                         <InputLabel>이메일</InputLabel>
                         <InputWrapper>
@@ -66,8 +76,7 @@ export const Login = () => {
                             <button
                                 type="button"
                                 className="toggle-password"
-                                onClick={() => {
-                                }}
+                                onClick={() => setShowPassword(prev => !prev)}
                                 aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
                             >
                                 {showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
@@ -78,7 +87,7 @@ export const Login = () => {
 
                     <StyledButton type="submit">로그인</StyledButton>
 
-                    <ForgotPassword href="#" >비밀번호를 잊으셨나요?</ForgotPassword>
+                    <ForgotPassword href="#" onClick={handleForgetPassword}>비밀번호를 잊으셨나요?</ForgotPassword>
                 </LoginForm>
 
                 <Divider>
@@ -87,7 +96,7 @@ export const Login = () => {
 
 
                 <RegisterLink>
-                    계정이 없으신가요? <a href="#" onClick={() => navigate("/")}>회원가입</a>
+                    계정이 없으신가요? <span onClick={() => navigate("/Signin")}>회원가입</span>
                 </RegisterLink>
             </LoginCard>
         </LoginContainer>
