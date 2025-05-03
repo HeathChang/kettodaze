@@ -34,15 +34,16 @@ export const SignInHeader = styled.div`
     margin-bottom: 2rem;
 
     h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: ${({ theme }) => theme.fontSizes.sm};
+        font-weight: ${({ theme }) => theme.fontWeights.semiBold};
         color: #333;
         margin-bottom: 0.5rem;
     }
 
     p {
         color: #666;
-        font-size: 0.9rem;
+        font-size: ${({ theme }) => theme.fontSizes.xs};
+        font-weight: ${({ theme }) => theme.fontWeights.medium};
     }
 `;
 
@@ -116,7 +117,8 @@ export const StyledInput = styled.input<{ hasError?: boolean }>`
 
 export const ErrorMessage = styled.span`
     color: #e53935;
-    font-size: 0.8rem;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
     margin-top: -0.25rem;
 `;
 
@@ -127,8 +129,8 @@ export const StyledButton = styled.button`
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
     cursor: pointer;
     transition: background-color 0.2s ease;
     margin-top: 0.5rem;

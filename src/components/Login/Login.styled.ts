@@ -33,15 +33,16 @@ export const LoginHeader = styled.div`
     margin-bottom: 2rem;
 
     h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: ${({ theme }) => theme.fontSizes.sm};
+        font-weight: ${({ theme }) => theme.fontWeights.medium};
         color: #333;
         margin-bottom: 0.5rem;
     }
 
     p {
         color: #666;
-        font-size: 0.9rem;
+        font-size: ${({ theme }) => theme.fontSizes.xs};
+        font-weight: ${({ theme }) => theme.fontWeights.medium};
     }
 `;
 
@@ -147,7 +148,9 @@ export const StyledButton = styled.button`
 
 export const ForgotPassword = styled.a`
     text-align: center;
-    font-size: 0.85rem;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    
     color: #666;
     text-decoration: none;
     margin-top: 0.5rem;
@@ -173,7 +176,8 @@ export const Divider = styled.div`
     span {
         padding: 0 1rem;
         color: #999;
-        font-size: 0.85rem;
+        font-size: ${({ theme }) => theme.fontSizes.xs};
+        font-weight: ${({ theme }) => theme.fontWeights.medium};
     }
 `;
 
@@ -218,13 +222,15 @@ export const SocialButton = styled.button`
 export const RegisterLink = styled.div`
     text-align: center;
     margin-top: 1.5rem;
-    font-size: 0.9rem;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
     color: #666;
 
     span {
         color: #ff6b6b;
         font-weight: 600;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover {
             text-decoration: underline;
