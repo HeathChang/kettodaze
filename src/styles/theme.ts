@@ -3,6 +3,7 @@ import { DefaultTheme } from "styled-components";
 const calRem = (size: number) => `${size / 10}rem`;
 
 const fontSizes = {
+    xxs: calRem(10), // 0.625rem
     xs: calRem(12), // 0.75rem
     sm: calRem(14), // 0.875rem
     md: calRem(16), // 1rem
@@ -14,7 +15,9 @@ const fontSizes = {
 };
 
 const fontWeights = {
-    small: 400,
+    thin: 200,
+    light: 300,
+    normal: 400,
     medium: 500,
     semiBold: 600,
     bold: 700,

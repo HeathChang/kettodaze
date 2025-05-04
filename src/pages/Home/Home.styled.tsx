@@ -27,7 +27,6 @@ export const HomeBodyBox = styled.div`
 export const HomeBodyTitle = styled.div`
     justify-content: left;
     width: inherit;
-    min-width: 1300px;
 
     margin-bottom: 1rem;
     font-size: ${({ theme }) => theme.fontSizes.md};

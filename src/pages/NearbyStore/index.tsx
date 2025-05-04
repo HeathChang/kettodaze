@@ -1,12 +1,10 @@
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
     NearbyStoreContainer,
     Header,
-    LogoContainer,
     SearchBar,
-    UserMenu,
     Content,
     MapSection,
     MapPlaceholder,
@@ -22,22 +20,22 @@ import {
     NoStores,
     LoadingIndicator,
     CurrentLocationButton,
-} from "./NearbyStore.styled"
-import { Search, User, Bell, MapPin, Map, Clock, Phone, Star, Inbox, Loader, Crosshair } from "lucide-react"
+} from "./NearbyStore.styled";
+import { Search, User, Bell, MapPin, Map, Clock, Phone, Star, Inbox, Loader, Crosshair } from "lucide-react";
 
 // Define the Store type
 interface Store {
-    id: string
-    name: string
-    address: string
-    distance: number // in meters
-    rating: number
-    reviewCount: number
-    openingHours: string
-    phone: string
-    latitude: number
-    longitude: number
-    category: string
+    id: string;
+    name: string;
+    address: string;
+    distance: number; // in meters
+    rating: number;
+    reviewCount: number;
+    openingHours: string;
+    phone: string;
+    latitude: number;
+    longitude: number;
+    category: string;
 }
 
 // Sample data for demonstration
@@ -107,120 +105,105 @@ const sampleStores: Store[] = [
         longitude: 139.7315,
         category: "가챠",
     },
-]
+];
 
 // Filter categories
-const categories = ["전체", "가챠", "토이", "피규어", "카드", "기타"]
+const categories = ["전체", "가챠", "토이", "피규어", "카드", "기타"];
 
-const  NearbyStorePage = () =>  {
-    const [stores, setStores] = useState<Store[]>([])
-    const [filteredStores, setFilteredStores] = useState<Store[]>([])
-    const [selectedCategory, setSelectedCategory] = useState("전체")
-    const [loading, setLoading] = useState(true)
-    const [searchQuery, setSearchQuery] = useState("")
+const NearbyStorePage = () => {
+    const [stores, setStores] = useState<Store[]>([]);
+    const [filteredStores, setFilteredStores] = useState<Store[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState("전체");
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
     // Simulate loading stores
     useEffect(() => {
         const timer = setTimeout(() => {
-            setStores(sampleStores)
-            setFilteredStores(sampleStores)
-            setLoading(false)
-        }, 1000)
+            setStores(sampleStores);
+            setFilteredStores(sampleStores);
+            setLoading(false);
+        }, 1000);
 
-        return () => clearTimeout(timer)
-    }, [])
+        return () => clearTimeout(timer);
+    }, []);
 
     // Filter stores based on category and search query
     useEffect(() => {
-        let result = [...stores]
+        let result = [...stores];
 
         // Filter by category
         if (selectedCategory !== "전체") {
-            result = result.filter((store) => store.category === selectedCategory)
+            result = result.filter((store) => store.category === selectedCategory);
         }
 
         // Filter by search query
         if (searchQuery) {
-            const query = searchQuery.toLowerCase()
+            const query = searchQuery.toLowerCase();
             result = result.filter(
                 (store) => store.name.toLowerCase().includes(query) || store.address.toLowerCase().includes(query),
-            )
+            );
         }
 
         // Sort by distance
-        result.sort((a, b) => a.distance - b.distance)
+        result.sort((a, b) => a.distance - b.distance);
 
-        setFilteredStores(result)
-    }, [stores, selectedCategory, searchQuery])
+        setFilteredStores(result);
+    }, [stores, selectedCategory, searchQuery]);
 
     // Handle category filter change
     const handleCategoryChange = (category: string) => {
-        setSelectedCategory(category)
-    }
+        setSelectedCategory(category);
+    };
 
     // Handle search input change
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value)
-    }
+        setSearchQuery(e.target.value);
+    };
 
     // Format distance for display
     const formatDistance = (meters: number) => {
-        return meters < 1000 ? `${meters}m` : `${(meters / 1000).toFixed(1)}km`
-    }
+        return meters < 1000 ? `${meters}m` : `${(meters / 1000).toFixed(1)}km`;
+    };
 
     // Render stars for rating
     const renderStars = (rating: number) => {
-        const stars = []
+        const stars = [];
         for (let i = 1; i <= 5; i++) {
             stars.push(
-                <Star key={i} size={14} fill={i <= rating ? "currentColor" : "none"} strokeWidth={i <= rating ? 0 : 2} />,
-            )
+                <Star key={i} size={14} fill={i <= rating ? "currentColor" : "none"}
+                      strokeWidth={i <= rating ? 0 : 2}/>,
+            );
         }
-        return stars
-    }
+        return stars;
+    };
 
     return (
         <NearbyStoreContainer>
             <Header>
-                {/*<LogoContainer>*/}
-                {/*    <Image src="/colorful-gacha-capsule-toy.png" alt="Kettodaze Logo" width={32} height={32} />*/}
-                {/*    <h1>kettodaze</h1>*/}
-                {/*</LogoContainer>*/}
-
                 <SearchBar>
-                    <Search size={18} className="search-icon" />
-                    <input type="text" placeholder="매장명, 주소 검색" value={searchQuery} onChange={handleSearchChange} />
+                    <Search size={18} className="search-icon"/>
+                    <input type="text" placeholder="매장명, 주소 검색" value={searchQuery} onChange={handleSearchChange}/>
                 </SearchBar>
 
-                <UserMenu>
-                    <button aria-label="알림">
-                        <Bell size={20} />
-                    </button>
-                    <button aria-label="프로필">
-                        <User size={20} />
-                    </button>
-                </UserMenu>
+
             </Header>
 
             <Content>
                 <MapSection>
                     <MapPlaceholder>
-                        <Map size={48} />
-                        <p>
-                            지도가 여기에 표시됩니다.
-                            <br />
-                            지도 라이브러리를 연결해주세요.
-                        </p>
+
+
                     </MapPlaceholder>
 
                     <CurrentLocationButton aria-label="현재 위치로">
-                        <Crosshair size={20} />
+                        <Crosshair size={20}/>
                     </CurrentLocationButton>
                 </MapSection>
 
                 <StoreListSection>
                     <StoreListHeader>
-                        <h2>내 주변 매장</h2>
+                        <h2>주변 매장</h2>
                         <p>{filteredStores.length}개의 매장이 검색되었습니다</p>
                     </StoreListHeader>
 
@@ -239,7 +222,7 @@ const  NearbyStorePage = () =>  {
                     <StoreList>
                         {loading ? (
                             <LoadingIndicator>
-                                <Loader size={32} className="spinner" />
+                                <Loader size={32} className="spinner"/>
                                 <p>매장 정보를 불러오는 중...</p>
                             </LoadingIndicator>
                         ) : filteredStores.length > 0 ? (
@@ -252,15 +235,15 @@ const  NearbyStorePage = () =>  {
 
                                     <StoreInfo>
                                         <p>
-                                            <MapPin size={16} />
+                                            <MapPin size={16}/>
                                             {store.address}
                                         </p>
                                         <p>
-                                            <Clock size={16} />
+                                            <Clock size={16}/>
                                             {store.openingHours}
                                         </p>
                                         <p>
-                                            <Phone size={16} />
+                                            <Phone size={16}/>
                                             {store.phone}
                                         </p>
                                     </StoreInfo>
@@ -275,7 +258,7 @@ const  NearbyStorePage = () =>  {
                             ))
                         ) : (
                             <NoStores>
-                                <Inbox size={32} />
+                                <Inbox size={32}/>
                                 <h3>검색 결과가 없습니다</h3>
                                 <p>다른 검색어나 필터를 시도해보세요</p>
                             </NoStores>
@@ -284,7 +267,7 @@ const  NearbyStorePage = () =>  {
                 </StoreListSection>
             </Content>
         </NearbyStoreContainer>
-    )
-}
+    );
+};
 
 export default NearbyStorePage;

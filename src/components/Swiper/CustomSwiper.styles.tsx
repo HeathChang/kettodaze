@@ -5,10 +5,17 @@ import { ImgHTMLAttributes } from "react";
 export const StyledSwiper = styled(Swiper)`
     width: 100%;
     height: 100%;
+    border: 1px solid red;
     
     .swiper-button-next, .swiper-button-prev {
+        border: 1px solid ${({ theme }) => theme.colors.blueGrey30};
+        border-radius: 50%;
+        background: ${({ theme }) => theme.colors.primaryLight};
+        z-index: 3;
+        
         &:after {
-            font-size: 18px;
+            padding: 12rem;
+            font-size: 22px;
             font-weight: 600;
             display: flex;
             align-items: center;

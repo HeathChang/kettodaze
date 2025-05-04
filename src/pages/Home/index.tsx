@@ -39,14 +39,12 @@ const swiperOptions = {
 
 
 const HomePage = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleClick = (card: any) => {
-        const {id} = card
-        if(!!id) navigate(`product/${id}`);
-
-    }
+        const { id } = card;
+        if (!!id) navigate(`product/${id}`);
+    };
 
     return (
         <HomeContainer>
@@ -86,12 +84,16 @@ const HomePage = () => {
                 </HomeBodyContent>
             </HomeBodyBox>
 
-
             {/* 추천 갓챠샵 */}
             <HomeBodyBox>
-                <HomeBodyTitle>추천 갓챠 샵</HomeBodyTitle>
-                <HomeBodyContent>
-                    ㅇ
+                <HomeBodyTitle>전체 갓챠(914 종)</HomeBodyTitle>
+                <HomeBodyContent style={{display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "5rem"}}>
+                    {
+                        cardArrayList.map((card, index) => (
+                            <CustomCard key={index} image={card.image} title={card.title} price={card.price}
+                                        desc={card.desc} onClick={() => handleClick(card)}/>
+                        ))
+                    }
                 </HomeBodyContent>
             </HomeBodyBox>
         </HomeContainer>

@@ -3,6 +3,7 @@ import "styled-components";
 declare module "styled-components" {
     export interface DefaultTheme {
         fontSizes: {
+            xxs: string;
             xs: string;
             sm: string;
             md: string;
@@ -12,6 +13,9 @@ declare module "styled-components" {
             title: string;
         };
         fontWeights: {
+            thin: number;
+            light: number;
+            normal: number;
             medium: number;
             semiBold: number;
             bold: number;
