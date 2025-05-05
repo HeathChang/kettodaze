@@ -23,6 +23,7 @@ export interface iDefaultInterface {
     onClick?: (params?: any) => void;
     onClose?: (params?: any) => void;
     onPress?: (params?: any) => void;
+    onSubmit?: (params?: any) => void;
     visible?: boolean;
     children ?: ReactNode;
 

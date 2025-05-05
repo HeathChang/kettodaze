@@ -74,3 +74,61 @@ export const cardArrayList = [
         desc: "테스트 카드입니다.테스트 카드입니다.테스트 카드입니다.테스트 카드입니다.테스트 카드입니다.테스트 카드입니다.테스트 카드입니다."
     },
 ];
+
+
+export const regions = [
+    "서울",
+    "부산",
+    "인천",
+    "대구",
+    "대전",
+    "광주",
+    "울산",
+    "세종",
+    "경기",
+    "강원",
+    "충북",
+    "충남",
+    "전북",
+    "전남",
+    "경북",
+    "경남",
+    "제주",
+];
+
+
+export const birthYears = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i - 10);
+
+
+// 좋아요 아이템 샘플 데이터
+export const favoriteItems = [
+    {
+        id: "1",
+        name: "원피스 루피 피규어",
+        price: "12,000원",
+        category: "피규어",
+        image: "/placeholder.svg?key=p56a2",
+    },
+    {
+        id: "2",
+        name: "포켓몬 피카츄 가챠",
+        price: "5,000원",
+        category: "가챠",
+        image: "/placeholder.svg?key=9nszg",
+    },
+    {
+        id: "3",
+        name: "귀멸의 칼날 탄지로 피규어",
+        price: "15,000원",
+        category: "피규어",
+        image: "/placeholder.svg?key=e1cdd",
+    },
+    {
+        id: "4",
+        name: "드래곤볼 손오공 가챠",
+        price: "4,500원",
+        category: "가챠",
+        image: "/placeholder.svg?key=oe3eg",
+    },
+];
+
